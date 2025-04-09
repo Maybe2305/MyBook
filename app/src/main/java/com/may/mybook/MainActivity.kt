@@ -35,6 +35,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import com.may.mybook.model.Book
 import com.may.mybook.ui.screens.AuthScreen
+import com.may.mybook.ui.screens.MainScreen
 import com.may.mybook.ui.theme.MyBookTheme
 
 class MainActivity : ComponentActivity() {
@@ -43,7 +44,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MyBookTheme {
-                AuthScreen()
+                MainScreen()
             }
         }
     }

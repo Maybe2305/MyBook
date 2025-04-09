@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MyBook</string>
+    <string name="label_for_email">Введите почту</string>
+    <string name="label_for_password">Введите пароль</string>
+    <string name="button_sign_in">Sign in</string>
+    <string name="button_sign_up">Sign up</string>
+    <string name="name_app">MY BOOK</string>
 </resources>
