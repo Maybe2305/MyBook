@@ -12,12 +12,19 @@ gmsVersion = "4.4.2"
 firebaseBomVersion = "33.12.0"
 coilVersion = "2.6.0"
 
+navigationCompose = "2.8.0"
+serializationVersion = "2.0.0"
+serializationKotlin = "1.7.1"
+
 [libraries]
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBomVersion" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore-ktx" }
 firebase-storage = { group = "com.google.firebase", name = "firebase-storage-ktx" }
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth" }
 coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilVersion" }
+
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serializationKotlin" }
+android-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -39,5 +46,8 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 gms = { id = "com.google.gms.google-services", version.ref = "gmsVersion" }
+
+plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "serializationVersion" }
+
 
 
