@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.gms)
+    alias(libs.plugins.plugin.serialization)
 }
 
 android {
@@ -50,6 +51,10 @@ dependencies {
 
     // Coil
     implementation(libs.coil)
+
+    // Navigation
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.android.navigation.compose)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
