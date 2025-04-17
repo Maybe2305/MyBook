@@ -37,9 +37,11 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
+import com.may.mybook.data.AddBookScreenObject
 import com.may.mybook.data.AuthScreenObject
 import com.may.mybook.data.MainScreenDataObject
 import com.may.mybook.model.Book
+import com.may.mybook.ui.screens.AddBookScreen
 import com.may.mybook.ui.screens.AuthScreen
 import com.may.mybook.ui.screens.MainScreen
 import com.may.mybook.ui.theme.MyBookTheme
@@ -67,6 +69,14 @@ class MainActivity : ComponentActivity() {
                         val navData = navEntry.toRoute<MainScreenDataObject>()
                         MainScreen(
                             navData,
+                            onAddBookClick = { navController.navigate(AddBookScreenObject) }
+                        )
+                    }
+
+                    composable<AddBookScreenObject> {
+                        AddBookScreen(
+                            onSaved = { navController.popBackStack() },
+                            onError = { navController.popBackStack() }
                         )
                     }
                 }

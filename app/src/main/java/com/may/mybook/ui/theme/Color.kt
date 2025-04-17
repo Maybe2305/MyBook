@@ -14,4 +14,6 @@ val BoxFilter = Color(0x41E38A05)
 val CardContent = Color(0x00E38A05)
 val CardColor = Color(0xFFFFF198)
 val DarkBlue = Color(0xFF1C2552)
+val LightBlue = Color(0xFF8BF4F8)
+
 

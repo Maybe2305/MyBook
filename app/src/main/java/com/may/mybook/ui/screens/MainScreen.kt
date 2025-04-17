@@ -31,12 +31,14 @@ import com.may.mybook.ui.utilities.DrawerHeader
 @Composable
 fun MainScreen(
     navData: MainScreenDataObject,
+    onAddBookClick: () -> Unit
 ) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
     ) {
         NavigationDrawer(
             navData.email,
+            onAddBookClick = onAddBookClick
         )
     }
 
@@ -46,6 +48,7 @@ fun MainScreen(
 @Composable
 fun NavigationDrawer(
     email: String,
+    onAddBookClick: () -> Unit
 ) {
     ModalNavigationDrawer(
         modifier = Modifier.fillMaxWidth(),
@@ -78,7 +81,9 @@ fun NavigationDrawer(
 
                     Spacer(modifier = Modifier.height(200.dp))
 
-                    DrawerBottom()
+                    DrawerBottom(
+                        onAddBookClick = { onAddBookClick() }
+                    )
                 }
             }
 
