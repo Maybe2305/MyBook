@@ -1,5 +1,6 @@
 package com.may.mybook.ui.utilities
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -27,6 +28,9 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -36,6 +40,9 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
+import com.google.firebase.firestore.firestore
 import com.may.mybook.R
 
 @Composable
@@ -107,7 +114,20 @@ fun DrawerBody() {
 }
 
 @Composable
-fun DrawerBottom() {
+fun DrawerBottom(
+    onAddBookClick: () -> Unit
+) {
+
+    val isAdminState = remember {
+        mutableStateOf(false)
+    }
+
+    LaunchedEffect(Unit) {
+        isAdmin {
+            isAdminState.value = it
+        }
+    }
+
    Row(
        modifier = Modifier.fillMaxWidth().height(48.dp),
        verticalAlignment = Alignment.CenterVertically,
@@ -125,17 +145,19 @@ fun DrawerBottom() {
 
        VerticalDivider(thickness = 2.dp, color = Color.White)
 
-       IconButton(
-           modifier = Modifier.weight(1f).background(Color.Black.copy(alpha = 0.3f)),
-           onClick = {  }
-       ) {
-           Icon(
-               imageVector = Icons.Filled.Add,
-               contentDescription = null,
-           )
-       }
+       if (isAdminState.value) {
+           IconButton(
+               modifier = Modifier.weight(1f).background(Color.Black.copy(alpha = 0.3f)),
+               onClick = { onAddBookClick() }
+           ) {
+               Icon(
+                   imageVector = Icons.Filled.Add,
+                   contentDescription = null,
+               )
+           }
 
-       VerticalDivider(thickness = 2.dp, color = Color.White)
+           VerticalDivider(thickness = 2.dp, color = Color.White)
+       }
 
        IconButton(
            modifier = Modifier.weight(1f).background(Color.Black.copy(alpha = 0.3f)),
@@ -152,5 +174,12 @@ fun DrawerBottom() {
 fun isAdmin(
     onAdmin: (Boolean) -> Unit,
 ) {
-
+    val uid = Firebase.auth.currentUser?.uid ?: ""
+    Firebase.firestore
+        .collection("admin")
+        .document(uid)
+        .get()
+        .addOnSuccessListener {
+            onAdmin(it.get("isAdmin") as Boolean)
+        }
 }

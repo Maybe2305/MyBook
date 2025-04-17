@@ -56,11 +56,11 @@ fun AuthScreen(
 ) {
 
     val emailState = remember {
-        mutableStateOf("")
+        mutableStateOf("xamidoff.ar6@gmail.com")
     }
 
     val passwordState = remember {
-        mutableStateOf("")
+        mutableStateOf("upazen23")
     }
 
     val auth = remember {
@@ -71,14 +71,14 @@ fun AuthScreen(
         mutableStateOf("")
     }
 
-    if (auth.currentUser != null) {
-        onNavigateToMainScreen(
-            MainScreenDataObject(
-                uid = auth.currentUser?.uid ?: "",
-                email = auth.currentUser?.email ?: ""
-            )
-        )
-    }
+//    if (auth.currentUser != null) {
+//        onNavigateToMainScreen(
+//            MainScreenDataObject(
+//                uid = auth.currentUser?.uid ?: "",
+//                email = auth.currentUser?.email ?: ""
+//            )
+//        )
+//    }
 
     Image(
         painter = painterResource(R.drawable.auth_screen_bg),
@@ -127,13 +127,19 @@ fun AuthScreen(
             ) {
                 val context = LocalContext.current
 
-                RoundedCornerTextField(text = emailState.value,
+                RoundedCornerTextField(
+                    text = emailState.value,
                     label = stringResource(R.string.label_for_email),
-                    onValueChange = { emailState.value = it })
+                    onValueChange = { emailState.value = it },
+                )
+
                 Spacer(modifier = Modifier.height(8.dp))
-                RoundedCornerTextField(text = passwordState.value,
+
+                RoundedCornerTextField(
+                    text = passwordState.value,
                     label = stringResource(R.string.label_for_password),
-                    onValueChange = { passwordState.value = it })
+                    onValueChange = { passwordState.value = it }
+                )
 
                 Spacer(modifier = Modifier.height(16.dp))
 

@@ -26,7 +26,11 @@ import com.may.mybook.ui.theme.CardColor
 fun RoundedCornerTextField(
     text: String,
     label: String,
-    onValueChange: (String) -> Unit
+    color: Color = CardColor,
+    singleLine: Boolean = true,
+    maxLines: Int = 1,
+    onValueChange: (String) -> Unit,
+
 ) {
 
     OutlinedTextField(
@@ -42,13 +46,14 @@ fun RoundedCornerTextField(
         colors = OutlinedTextFieldDefaults.colors(
             focusedContainerColor = Color.Transparent,
             unfocusedContainerColor = Color.Transparent,
-            focusedTextColor = CardColor,
-            unfocusedTextColor = CardColor,
-            focusedLabelColor = CardColor,
-            unfocusedLabelColor = CardColor,
-            focusedBorderColor = CardColor,
-            unfocusedBorderColor = CardColor,
+            focusedTextColor = color,
+            unfocusedTextColor = color,
+            focusedLabelColor = color,
+            unfocusedLabelColor = color,
+            focusedBorderColor = color,
+            unfocusedBorderColor = color,
         ),
-        singleLine = true
+        singleLine = singleLine,
+        maxLines = maxLines,
     )
 }

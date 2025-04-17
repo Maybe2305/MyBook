@@ -10,18 +10,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.may.mybook.ui.theme.CardColor
 
 @Composable
 fun OutlinedButtonCustom(
     text: String,
-    onClick: () -> Unit
+    color: Color = CardColor,
+    onClick: () -> Unit,
 ) {
 
     OutlinedButton(
-        border = BorderStroke(2.dp, Color.Yellow),
+        border = BorderStroke(2.dp, color),
         onClick = { onClick() },
         modifier = Modifier.fillMaxWidth(),
-        colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.Yellow)
+        colors = ButtonDefaults.outlinedButtonColors(contentColor = color)
     ) {
         Text(text)
     }
